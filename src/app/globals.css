@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-deep: #0a0e1a;
+  --color-bg-navy: #16213e;
+  --color-accent-maroon: #b22222;
+  --color-accent-maroon-bright: #e63946;
+  --color-accent-steel: #2e4b8f;
+  --color-accent-steel-bright: #4d7ad1;
+  --color-gunmetal: #2a2e37;
+  --color-gunmetal-light: #3a3f4a;
+  --color-foreground: #e8ebf5;
+  --color-muted: #8b93a7;
+}
+
+@theme inline {
+  --color-bg-deep: var(--color-bg-deep);
+  --color-bg-navy: var(--color-bg-navy);
+  --color-accent-maroon: var(--color-accent-maroon);
+  --color-accent-maroon-bright: var(--color-accent-maroon-bright);
+  --color-accent-steel: var(--color-accent-steel);
+  --color-accent-steel-bright: var(--color-accent-steel-bright);
+  --color-gunmetal: var(--color-gunmetal);
+  --color-gunmetal-light: var(--color-gunmetal-light);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: radial-gradient(
+      ellipse 80% 60% at 50% -10%,
+      color-mix(in srgb, var(--color-accent-steel) 18%, transparent),
+      transparent
+    ),
+    linear-gradient(180deg, var(--color-bg-deep) 0%, var(--color-bg-navy) 100%);
+  background-attachment: fixed;
+  color: var(--color-foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Glassmorphism card */
+.glass-panel {
+  background: color-mix(in srgb, var(--color-gunmetal) 40%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+/* Glow ring used on hover/active states */
+.glow-border-maroon {
+  border-color: var(--color-accent-maroon);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-maroon) 40%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-accent-maroon) 35%, transparent);
+}
+
+.glow-border-steel {
+  border-color: var(--color-accent-steel);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-steel) 40%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-accent-steel) 35%, transparent);
+}
+
+.text-glow-maroon {
+  text-shadow: 0 0 18px color-mix(in srgb, var(--color-accent-maroon-bright) 55%, transparent);
+}
+
+/* Low-opacity circuit-trace background texture */
+.circuit-bg {
+  background-image: linear-gradient(
+      color-mix(in srgb, var(--color-accent-steel) 14%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent-steel) 14%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 40%, transparent 85%);
+}
+
+::selection {
+  background: var(--color-accent-maroon);
+  color: white;
+}
