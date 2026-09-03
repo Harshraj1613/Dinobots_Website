@@ -69,8 +69,22 @@ body {
   text-shadow: 0 0 18px color-mix(in srgb, var(--color-accent-maroon-bright) 55%, transparent);
 }
 
-/* Low-opacity circuit-trace background texture */
+/*
+ * Low-opacity circuit-trace background texture, drawn on a ::before layer
+ * (not the element's own background) so the mask-image can fade the grid
+ * out toward the edges without also fading the element's real content.
+ */
 .circuit-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.circuit-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image: linear-gradient(
       color-mix(in srgb, var(--color-accent-steel) 14%, transparent) 1px,
       transparent 1px
